@@ -314,6 +314,29 @@ body {
   margin-top: 3rem;
 }
 
+.courses-strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 1fr);
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+
+.courses-strip .strip-item {
+  scroll-snap-align: start;
+}
+
+.courses-strip::-webkit-scrollbar {
+  height: 8px;
+}
+
+.courses-strip::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 9999px;
+}
+
 .course-card {
   background: white;
   border-radius: 16px;
@@ -477,6 +500,23 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
+.show-more-btn {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.show-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
 /* About Section */
 .about {
   padding: 6rem 0;
@@ -574,6 +614,61 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+/* Contact CTA (different color) */
+.contact-cta {
+  background: #1e40af;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cta-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  color: #fff;
+}
+
+.contact-cta-text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 2rem;
+}
+
+.contact-cta-primary {
+  display: inline-block;
+  background: #ffffff;
+  color: #1e40af;
+  padding: 0.9rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--shadow-md);
+}
+
+.contact-cta-illustration {
+  height: 260px;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+}
+
+.contact-cta-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+@media (min-width: 1440px) {
+  .contact-cta-content {
+    max-width: 1440px;
+  }
 }
 
 .testimonial-card {
@@ -704,69 +799,68 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Footer */
-.footer {
-  background: var(--bg-dark);
-  color: white;
-  padding: 3rem 0 1rem;
+/* Footer (Figma style) */
+.footer-modern {
+  background: #fff;
 }
 
-.footer-content {
+.footer-grid {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 3rem;
 }
 
-.footer h3 {
-  font-size: 2rem;
-  font-weight: 700;
+.footer-col {}
+
+.footer-heading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  margin-bottom: 1.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  color: #4b5563;
   margin-bottom: 1rem;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-.footer p {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.footer-contact {
+  color: #374151;
 }
 
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.social-link {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+.footer-link-accent {
+  color: #2563eb;
+  display: block;
+  margin-bottom: .75rem;
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1.2rem;
 }
 
-.social-link:hover {
-  background: var(--gradient-accent);
-  transform: translateY(-3px);
+.footer-desc {
+  color: #6b7280;
+  margin: 1rem 0 1.25rem;
+  max-width: 32rem;
 }
 
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
-  color: rgba(255, 255, 255, 0.6);
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+  color: #2563eb;
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* Mobile Menu */

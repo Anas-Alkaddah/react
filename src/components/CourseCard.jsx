@@ -1,7 +1,8 @@
 import '../index.css';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function CourseCard({ title, description, level, price, instructor, duration, students, rating, image }) {
+function CourseCard({ id, title, description, level, price, instructor, duration, students, rating, image }) {
     const [isFavorite, setIsFavorite] = useState(false);
     return (
         <div className="course-card">
@@ -45,9 +46,14 @@ function CourseCard({ title, description, level, price, instructor, duration, st
 
             <div className="course-footer">
                 <div className="course-price">{price}</div>
-                <button className="course-button" >
-                    ابدأ الآن
-                </button>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <button className="course-button" >
+                        ابدأ الآن
+                    </button>
+                    <Link to={`/courses/${id}`} className="course-button" style={{ background: 'linear-gradient(135deg,#f093fb 0%,#f5576c 100%)' }}>
+                        التفاصيل
+                    </Link>
+                </div>
             </div>
         </div>
     );
