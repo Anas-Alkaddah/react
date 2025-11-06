@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaLock, FaGoogle, FaFacebook } from 'react-icons/fa';
 import '../index.css';
+import useUser from '../hooks/useUser';
 
 function Signup() {
     const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ function Signup() {
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { signup } = useUser();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,23 +58,18 @@ function Signup() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
             setIsSubmitting(true);
-
-            // Simulate API call
-            setTimeout(() => {
-                alert('تم إنشاء الحساب بنجاح!');
-                setFormData({
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: ''
-                });
+            try {
+                await signup({ name: formData.name, email: formData.email });
+                setFormData({ name: '', email: '', password: '', confirmPassword: '' });
+                navigate('/');
+            } finally {
                 setIsSubmitting(false);
-            }, 1000);
+            }
         }
     };
 

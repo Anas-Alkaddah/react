@@ -2,6 +2,7 @@
 import CourseCard from "./CourseCard";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Loader from './Loader';
 import {
     FaLaptopCode,
     FaGlobe,
@@ -17,6 +18,7 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilter, setActiveFilter] = useState('All');
     const [courses, setCourses] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     // جلب البيانات من JSON
     useEffect(() => {
@@ -24,7 +26,8 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
         fetch('/data/courses.json')
             .then(res => res.json())
             .then(data => { if (alive) setCourses(data); })
-            .catch(() => setCourses([]));
+            .catch(() => setCourses([]))
+            .finally(() => { if (alive) setIsLoading(false); });
         return () => { alive = false; };
     }, []);
 
@@ -74,7 +77,7 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
                     placeholder="ابحث بالاسم، الوصف، المدرب، أو المستوى..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    style={{ // يمكنك استبدال هذه الأنماط بـ CSS Class
+                    style={{
                         padding: '12px',
                         width: '100%',
                         maxWidth: '600px',
@@ -87,13 +90,43 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
                     }}
                 />
 
-                {/* 4. استخدام القائمة المُصفّاة (filteredCourses) للعرض */}
-                {variant === 'strip' ? (
-                    <div className="courses-strip">
-                        {filteredCourses.length > 0 ? (
-                            filteredCourses.map(course => (
-                                <div key={course.id} className="strip-item">
+                { }
+                <Loader loading={isLoading} noResults={!isLoading && filteredCourses.length === 0} noResultsText={`لا توجد نتائج مطابقة${searchTerm ? ` لـ: ${searchTerm}` : ''}`}>
+                    {variant === 'strip' ? (
+                        <div className="courses-strip">
+                            {filteredCourses.length > 0 ? (
+                                filteredCourses.map(course => (
+                                    <div key={course.id} className="strip-item">
+                                        <CourseCard
+                                            id={course.id}
+                                            title={course.title}
+                                            description={course.description}
+                                            level={course.level}
+                                            price={course.price}
+                                            instructor={course.instructor}
+                                            duration={course.duration}
+                                            students={course.students}
+                                            rating={course.rating}
+                                            image={
+                                                course.category === 'Web' ? <FaLaptopCode /> :
+                                                    course.category === 'AI' ? <FaRobot /> :
+                                                        course.category === 'Design' ? <FaPalette /> :
+                                                            course.category === 'Security' ? <FaShieldAlt /> :
+                                                                course.category === 'Mobile' ? <FaMobileAlt /> :
+                                                                    course.category === 'Marketing' ? <FaChartLine /> :
+                                                                        <FaChartBar />
+                                            }
+                                        />
+                                    </div>
+                                ))
+                            ) : null}
+                        </div>
+                    ) : (
+                        <div className="courses-grid">
+                            {filteredCourses.length > 0 ? (
+                                filteredCourses.map(course => (
                                     <CourseCard
+                                        key={course.id}
                                         id={course.id}
                                         title={course.title}
                                         description={course.description}
@@ -113,47 +146,11 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
                                                                     <FaChartBar />
                                         }
                                     />
-                                </div>
-                            ))
-                        ) : (
-                            <p style={{ textAlign: 'center', fontSize: '1.2em', color: '#888', width: '100%' }}>
-                                لا توجد دورات مطابقة لـ: **{searchTerm}**
-                            </p>
-                        )}
-                    </div>
-                ) : (
-                    <div className="courses-grid">
-                        {filteredCourses.length > 0 ? (
-                            filteredCourses.map(course => (
-                                <CourseCard
-                                    key={course.id}
-                                    id={course.id}
-                                    title={course.title}
-                                    description={course.description}
-                                    level={course.level}
-                                    price={course.price}
-                                    instructor={course.instructor}
-                                    duration={course.duration}
-                                    students={course.students}
-                                    rating={course.rating}
-                                    image={
-                                        course.category === 'Web' ? <FaLaptopCode /> :
-                                            course.category === 'AI' ? <FaRobot /> :
-                                                course.category === 'Design' ? <FaPalette /> :
-                                                    course.category === 'Security' ? <FaShieldAlt /> :
-                                                        course.category === 'Mobile' ? <FaMobileAlt /> :
-                                                            course.category === 'Marketing' ? <FaChartLine /> :
-                                                                <FaChartBar />
-                                    }
-                                />
-                            ))
-                        ) : (
-                            <p style={{ gridColumn: '1 / -1', textAlign: 'center', fontSize: '1.2em', color: '#888' }}>
-                                لا توجد دورات مطابقة لـ: **{searchTerm}**
-                            </p>
-                        )}
-                    </div>
-                )}
+                                ))
+                            ) : null}
+                        </div>
+                    )}
+                </Loader>
             </div>
 
             {showMoreLink && (

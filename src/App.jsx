@@ -13,23 +13,30 @@ import Signup from './components/signup';
 import Login from './components/login';
 import CourseDetails from './components/CourseDetails';
 import ContactCTA from './components/ContactCTA';
+import { ThemeProvider } from './context/ThemeContext.jsx';
+import { UserProvider } from './context/UserContext.jsx';
+import RequireAuth from './components/RequireAuth.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<><Hero /><CoursesSection showMoreLink={true} limit={3} variant="strip" /><ContactCTA /><Stats /></>} />
-          <Route path="about" element={<About />} />
-          <Route path="courses" element={<CoursesSection />} />
-          <Route path="courses/:id" element={<CourseDetails />} />
-          <Route path="testimonials" element={<Testimonials />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<><Hero /><CoursesSection showMoreLink={true} limit={3} variant="strip" /><ContactCTA /><Stats /></>} />
+              <Route path="about" element={<About />} />
+              <Route path="courses" element={<CoursesSection />} />
+              <Route path="courses/:id" element={<RequireAuth><CourseDetails /></RequireAuth>} />
+              <Route path="testimonials" element={<Testimonials />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 

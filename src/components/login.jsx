@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaUser, FaGoogle, FaFacebook } from 'react-icons/fa';
 import '../index.css';
+import useUser from '../hooks/useUser';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -10,6 +11,9 @@ function Login() {
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { login } = useUser();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,21 +47,19 @@ function Login() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
             setIsSubmitting(true);
-
-            // Simulate API call
-            setTimeout(() => {
-                alert('تم تسجيل الدخول بنجاح!');
-                setFormData({
-                    email: '',
-                    password: ''
-                });
+            try {
+                await login({ email: formData.email });
+                setFormData({ email: '', password: '' });
+                const redirectTo = location.state?.from?.pathname || '/';
+                navigate(redirectTo, { replace: true });
+            } finally {
                 setIsSubmitting(false);
-            }, 1000);
+            }
         }
     };
 
