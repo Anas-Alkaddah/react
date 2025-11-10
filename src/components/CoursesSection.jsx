@@ -66,7 +66,7 @@ function CoursesSection({ showMoreLink = true, limit, variant = 'grid' }) {
                 </p>
 
                 {/* أزرار الفلترة */}
-                <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '16px', width: '1162px', height: '52px', top: '161px', left: '140px', }}>
                     {['All', 'Web', 'Mobile', 'AI', 'Design', 'Security', 'Marketing', 'Data'].map(cat => (
                         <button key={cat} onClick={() => setActiveFilter(cat)} className={activeFilter === cat ? 'course-button' : 'favorite-button'} style={{ padding: '0.5rem 1rem' }}>{cat}</button>
                     ))}

@@ -5,53 +5,96 @@ import { useState } from 'react';
 function CourseCard({ id, title, description, level, price, instructor, duration, students, rating, image }) {
     const [isFavorite, setIsFavorite] = useState(false);
     return (
-        <div className="course-card">
+        <div
+            className="course-card"
+            style={{
+                width: '368px',
+                height: '480px',
+                borderRadius: '8px',
+                boxSizing: 'border-box',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                border: '1px solid #eee',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}
+        >
             <div className="course-image">
                 <span className="course-icon">{image}</span>
             </div>
 
-            <h3>{title}</h3>
-            <button
-                className="favorite-button"
-                aria-pressed={isFavorite}
-                onClick={() => setIsFavorite(prev => !prev)}
-            >
-                {isFavorite ? ' مفضلة' : ' أضف للمفضلة'}
-            </button>
 
-            <p>{description}</p>
+
+            <p
+                style={{
+
+                    position: 'absolute',
+                    top: '322px',
+                    left: '24px',
+                    width: '320px',
+                    height: '72px',
+                    opacity: 1,
+                    transform: 'rotate(0deg)',
+
+
+                    fontFamily: 'Maven Pro',
+                    fontWeight: 400,
+                    fontSize: '16px',
+                    lineHeight: '150%',
+                    letterSpacing: '0px',
+                    color: '#666',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                }}
+            >
+                {description}
+            </p>
 
             <div className="course-meta">
                 <span className={`level ${level.toLowerCase()}`}>{level}</span>
-                <div className="course-rating">
-                    <span className="stars">⭐⭐⭐⭐⭐</span>
-                    <span className="rating-text">{rating}</span>
-                </div>
             </div>
 
-            <div className="course-info">
-                <div className="info-item">
-                    <span className="info-label">المدرب:</span>
-                    <span className="info-value">{instructor}</span>
-                </div>
-                <div className="info-item">
-                    <span className="info-label">المدة:</span>
-                    <span className="info-value">{duration}</span>
-                </div>
-                <div className="info-item">
-                    <span className="info-label">الطلاب:</span>
-                    <span className="info-value">{students}</span>
-                </div>
-            </div>
+
 
             <div className="course-footer">
                 <div className="course-price">{price}</div>
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    <button className="course-button" >
-                        ابدأ الآن
-                    </button>
-                    <Link to={`/courses/${id}`} className="course-button" style={{ background: 'linear-gradient(135deg,#f093fb 0%,#f5576c 100%)' }}>
-                        التفاصيل
+                <div style={{
+                    display: 'flex', gap: '0.5rem', flexWrap: 'wrap', width: '105px',
+                    height: '25px',
+                }}>
+
+
+
+
+
+
+                    <Link to={`/courses/${id}`} className="course-button" style={{
+                        width: '110px',
+                        height: '36px',
+                        opacity: 1,
+                        borderRadius: '8px',
+
+
+                        paddingTop: '9px',
+                        paddingRight: '30px',
+                        paddingBottom: '9px',
+                        paddingLeft: '30px',
+
+
+                        borderWidth: '1px',
+                        borderStyle: 'solid',
+                        borderColor: '#333',
+
+
+                        display: 'flex',
+                        gap: '10px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        backgroundColor: 'transparent',
+                        color: '#333'
+                    }}>
+                        show all
                     </Link>
                 </div>
             </div>
