@@ -19,68 +19,68 @@ function Contact() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+        alert('Your message has been sent! We will get back to you soon.');
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 
     return (
         <section id="contact" className="contact">
             <div className="contact-content">
-                <h2>تواصل معنا</h2>
+                <h2>Contact Us</h2>
                 <p className="contact-subtitle">
-                    نحن هنا لمساعدتك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.
+                    We are here to help. Send us a message and we will respond as soon as possible.
                 </p>
                 <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="name">الاسم الكامل</label>
+                        <label htmlFor="name">Full Name</label>
                         <input
                             type="text"
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            placeholder="أدخل اسمك الكامل"
+                            placeholder="Enter your full name"
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">البريد الإلكتروني</label>
+                        <label htmlFor="email">Email Address</label>
                         <input
                             type="email"
                             id="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            placeholder="أدخل بريدك الإلكتروني"
+                            placeholder="Enter your email address"
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="subject">الموضوع</label>
+                        <label htmlFor="subject">Subject</label>
                         <input
                             type="text"
                             id="subject"
                             name="subject"
                             value={formData.subject}
                             onChange={handleChange}
-                            placeholder="ما هو موضوع رسالتك؟"
+                            placeholder="What is your message about?"
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="message">الرسالة</label>
+                        <label htmlFor="message">Message</label>
                         <textarea
                             id="message"
                             name="message"
                             value={formData.message}
                             onChange={handleChange}
-                            placeholder="اكتب رسالتك هنا..."
+                            placeholder="Write your message..."
                             rows="5"
                             required
                         ></textarea>
                     </div>
                     <button type="submit" className="submit-button">
-                        إرسال الرسالة
+                        Send Message
                     </button>
                 </form>
             </div>

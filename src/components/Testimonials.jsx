@@ -7,54 +7,54 @@ function Testimonials() {
     const testimonials = [
         {
             id: 1,
-            text: "دورة البرمجة غيرت حياتي تماماً. الآن أعمل كمطور ويب في شركة رائدة بفضل المهارات التي اكتسبتها.",
-            author: "أحمد السعيد",
-            role: "مطور ويب",
-            avatar: "أ"
+            text: "The programming bootcamp completely changed my career path. I am now a web developer at a leading company thanks to the skills I gained.",
+            author: "Ahmed Al Saeed",
+            role: "Web Developer",
+            avatar: "A"
         },
         {
             id: 2,
-            text: "أفضل منصة تعليمية واجهتها. المدربون محترفون جداً والمحتوى منظم بطريقة ممتازة.",
-            author: "فاطمة محمد",
-            role: "مصممة UX/UI",
-            avatar: "ف"
+            text: "This is the best learning platform I have tried. The mentors are highly professional and the content is organized beautifully.",
+            author: "Fatima Mohamed",
+            role: "UX/UI Designer",
+            avatar: "F"
         },
         {
             id: 3,
-            text: "دورة الذكاء الاصطناعي كانت رائعة. تعلمت تقنيات متقدمة ساعدتني في مشروعي النهائي.",
-            author: "محمد علي",
-            role: "باحث في الذكاء الاصطناعي",
-            avatar: "م"
+            text: "The AI course was outstanding. I learned advanced techniques that helped me complete my capstone project.",
+            author: "Mohamed Ali",
+            role: "AI Researcher",
+            avatar: "M"
         },
         {
             id: 4,
-            text: "المحتوى عملي جداً ومفيد. استطعت تطبيق ما تعلمته مباشرة في عملي.",
-            author: "نورا أحمد",
-            role: "مطورة تطبيقات محمولة",
-            avatar: "ن"
+            text: "The lessons are hands-on and useful. I applied what I learned immediately in my job.",
+            author: "Nora Ahmed",
+            role: "Mobile App Developer",
+            avatar: "N"
         },
         {
             id: 5,
-            text: "دعم فني ممتاز ومجتمع تعليمي رائع. أنصح الجميع بالانضمام لهذه المنصة.",
-            author: "خالد عبدالله",
-            role: "مطور أمن معلومات",
-            avatar: "خ"
+            text: "Excellent support and an inspiring learning community. I recommend this platform to everyone.",
+            author: "Khalid Abdullah",
+            role: "Cybersecurity Engineer",
+            avatar: "K"
         },
         {
             id: 6,
-            text: "الشهادات معتمدة ومعترف بها في سوق العمل. ساعدتني في الحصول على وظيفة أحلامي.",
-            author: "سارة حسن",
-            role: "محللة بيانات",
-            avatar: "س"
+            text: "The certifications are recognized in the job market. They helped me land my dream role.",
+            author: "Sara Hassan",
+            role: "Data Analyst",
+            avatar: "S"
         }
     ];
 
     return (
         <section id="testimonials" className="testimonials">
             <div className="testimonials-content">
-                <h2>آراء طلابنا</h2>
+                <h2>What Our Learners Say</h2>
                 <p className="testimonials-subtitle">
-                    اكتشف ما يقوله طلابنا عن تجربتهم معنا
+                    Discover how our students describe their experience with TechEdu.
                 </p>
                 <div className="testimonials-grid">
                     {testimonials.map(testimonial => (

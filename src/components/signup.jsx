@@ -35,23 +35,23 @@ function Signup() {
         const newErrors = {};
 
         if (!formData.name.trim()) {
-            newErrors.name = 'الاسم مطلوب';
+            newErrors.name = 'Name is required';
         }
 
         if (!formData.email.trim()) {
-            newErrors.email = 'البريد الإلكتروني مطلوب';
+            newErrors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'البريد الإلكتروني غير صحيح';
+            newErrors.email = 'Please enter a valid email address';
         }
 
         if (!formData.password) {
-            newErrors.password = 'كلمة المرور مطلوبة';
+            newErrors.password = 'Password is required';
         } else if (formData.password.length < 6) {
-            newErrors.password = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+            newErrors.password = 'Password must be at least 6 characters long';
         }
 
         if (formData.password !== formData.confirmPassword) {
-            newErrors.confirmPassword = 'كلمة المرور غير متطابقة';
+            newErrors.confirmPassword = 'Passwords do not match';
         }
 
         setErrors(newErrors);
@@ -76,12 +76,12 @@ function Signup() {
     return (
         <div className="signup-container">
             <div className="signup-form">
-                <h2>إنشاء حساب جديد</h2>
-                <p className="signup-subtitle">انضم إلينا وابدأ رحلتك التعليمية</p>
+                <h2>Create a New Account</h2>
+                <p className="signup-subtitle">Join TechEdu and kick-start your learning journey.</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="name">الاسم الكامل</label>
+                        <label htmlFor="name">Full Name</label>
                         <div className="input-wrapper">
                             <FaUser className="input-icon" />
                             <input
@@ -91,14 +91,14 @@ function Signup() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 className={errors.name ? 'error' : ''}
-                                placeholder="أدخل اسمك الكامل"
+                                placeholder="Enter your full name"
                             />
                         </div>
                         {errors.name && <span className="error-message">{errors.name}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email">البريد الإلكتروني</label>
+                        <label htmlFor="email">Email Address</label>
                         <div className="input-wrapper">
                             <FaEnvelope className="input-icon" />
                             <input
@@ -108,14 +108,14 @@ function Signup() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 className={errors.email ? 'error' : ''}
-                                placeholder="أدخل بريدك الإلكتروني"
+                                placeholder="Enter your email"
                             />
                         </div>
                         {errors.email && <span className="error-message">{errors.email}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">كلمة المرور</label>
+                        <label htmlFor="password">Password</label>
                         <div className="input-wrapper">
                             <FaLock className="input-icon" />
                             <input
@@ -125,14 +125,14 @@ function Signup() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 className={errors.password ? 'error' : ''}
-                                placeholder="أدخل كلمة المرور"
+                                placeholder="Create a password"
                             />
                         </div>
                         {errors.password && <span className="error-message">{errors.password}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="confirmPassword">تأكيد كلمة المرور</label>
+                        <label htmlFor="confirmPassword">Confirm Password</label>
                         <div className="input-wrapper">
                             <FaLock className="input-icon" />
                             <input
@@ -142,7 +142,7 @@ function Signup() {
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 className={errors.confirmPassword ? 'error' : ''}
-                                placeholder="أعد إدخال كلمة المرور"
+                                placeholder="Re-enter your password"
                             />
                         </div>
                         {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
@@ -153,12 +153,12 @@ function Signup() {
                         className="signup-button"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'جاري الإنشاء...' : 'إنشاء الحساب'}
+                        {isSubmitting ? 'Creating account...' : 'Sign Up'}
                     </button>
                 </form>
 
                 <div className="signup-footer">
-                    <p>هل لديك حساب بالفعل؟ <Link to="/login">تسجيل الدخول</Link></p>
+                    <p>Already have an account? <Link to="/login">Sign in here</Link></p>
                 </div>
             </div>
         </div>

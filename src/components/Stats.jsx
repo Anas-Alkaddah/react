@@ -2,10 +2,10 @@ import '../index.css';
 
 function Stats() {
     const stats = [
-        { number: '50,000+', label: 'طالب وطالبة' },
-        { number: '200+', label: 'دورة تدريبية' },
-        { number: '50+', label: 'مدرب محترف' },
-        { number: '95%', label: 'معدل النجاح' }
+        { number: '50,000+', label: 'Learners' },
+        { number: '200+', label: 'Courses' },
+        { number: '50+', label: 'Expert Mentors' },
+        { number: '95%', label: 'Success Rate' }
     ];
 
     return (

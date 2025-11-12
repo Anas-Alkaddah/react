@@ -3,6 +3,7 @@ import './index.css';
 import Layout from './components/Layout';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Partners from './components/Partners';
 import Stats from './components/Stats';
 import CoursesSection from './components/CoursesSection';
 import About from './components/About';
@@ -24,7 +25,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route index element={<><Hero /><About /> <CoursesSection showMoreLink={true} limit={3} variant="strip" /><ContactCTA /><Stats /></>} />
+              <Route index element={<><Hero /><Partners /><About /> <CoursesSection showMoreLink={true} limit={3} variant="strip" /><ContactCTA /><Stats /></>} />
               <Route path="about" element={<About />} />
               <Route path="courses" element={<CoursesSection />} />
               <Route path="courses/:id" element={<RequireAuth><CourseDetails /></RequireAuth>} />

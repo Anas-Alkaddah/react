@@ -40,21 +40,20 @@ function Header() {
         </button>
         <nav className={`nav ${mobileMenuOpen ? 'nav-open' : ''}`}>
           <ul className="nav-links">
-
-            <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>الرئيسية</Link></li>
-            <li><Link to="/courses" onClick={() => setMobileMenuOpen(false)}>الدورات</Link></li>
-            <li><Link to="/about" onClick={() => setMobileMenuOpen(false)}>من نحن</Link></li>
-            <li><Link to="/testimonials" onClick={() => setMobileMenuOpen(false)}>آراء الطلاب</Link></li>
-            <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)}>اتصل بنا</Link></li>
+            <li><Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
+            <li><Link to="/courses" onClick={() => setMobileMenuOpen(false)}>Courses</Link></li>
+            <li><Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link></li>
+            <li><Link to="/testimonials" onClick={() => setMobileMenuOpen(false)}>Testimonials</Link></li>
+            <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link></li>
             {!user ? (
               <>
-                <li><Link to="/login" className="cta-button" onClick={() => setMobileMenuOpen(false)}>تسجيل الدخول</Link></li>
-                <li><Link to="/signup" className="cta-button" onClick={() => setMobileMenuOpen(false)}>انشاء حساب</Link></li>
+                <li><Link to="/login" className="cta-button" onClick={() => setMobileMenuOpen(false)}>Sign In</Link></li>
+                <li><Link to="/signup" className="cta-button" onClick={() => setMobileMenuOpen(false)}>Create Account</Link></li>
               </>
             ) : (
               <>
-                <li style={{ paddingInline: '8px', alignSelf: 'center' }}>مرحباً، {user.name}</li>
-                <li><button onClick={() => { logout(); setMobileMenuOpen(false); }} className="favorite-button">تسجيل الخروج</button></li>
+                <li style={{ paddingInline: '8px', alignSelf: 'center' }}>Hello, {user.name}</li>
+                <li><button onClick={() => { logout(); setMobileMenuOpen(false); }} className="favorite-button">Sign Out</button></li>
               </>
             )}
             <li>

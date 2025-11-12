@@ -34,13 +34,13 @@ function Login() {
         const newErrors = {};
 
         if (!formData.email.trim()) {
-            newErrors.email = 'البريد الإلكتروني مطلوب';
+            newErrors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'البريد الإلكتروني غير صحيح';
+            newErrors.email = 'Please enter a valid email address';
         }
 
         if (!formData.password) {
-            newErrors.password = 'كلمة المرور مطلوبة';
+            newErrors.password = 'Password is required';
         }
 
         setErrors(newErrors);
@@ -66,12 +66,12 @@ function Login() {
     return (
         <div className="login-container">
             <div className="login-form">
-                <h2>تسجيل الدخول</h2>
-                <p className="login-subtitle">مرحباً بك مرة أخرى</p>
+                <h2>Sign In</h2>
+                <p className="login-subtitle">Welcome back! Please enter your details.</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">البريد الإلكتروني</label>
+                        <label htmlFor="email">Email Address</label>
                         <div className="input-wrapper">
                             <FaEnvelope className="input-icon" />
                             <input
@@ -81,14 +81,14 @@ function Login() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 className={errors.email ? 'error' : ''}
-                                placeholder="أدخل بريدك الإلكتروني"
+                                placeholder="Enter your email"
                             />
                         </div>
                         {errors.email && <span className="error-message">{errors.email}</span>}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">كلمة المرور</label>
+                        <label htmlFor="password">Password</label>
                         <div className="input-wrapper">
                             <FaLock className="input-icon" />
                             <input
@@ -98,7 +98,7 @@ function Login() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 className={errors.password ? 'error' : ''}
-                                placeholder="أدخل كلمة المرور"
+                                placeholder="Enter your password"
                             />
                         </div>
                         {errors.password && <span className="error-message">{errors.password}</span>}
@@ -111,12 +111,12 @@ function Login() {
                         className="login-button"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+                        {isSubmitting ? 'Signing in...' : 'Sign In'}
                     </button>
                 </form>
 
                 <div className="login-footer">
-                    <p>ليس لديك حساب؟ <Link to="/signup">إنشاء حساب جديد</Link></p>
+                    <p>Don’t have an account? <Link to="/signup">Create one now</Link></p>
                 </div>
             </div>
         </div>
