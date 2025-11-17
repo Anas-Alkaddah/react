@@ -17,6 +17,7 @@ import ContactCTA from './components/ContactCTA';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import { UserProvider } from './context/UserContext.jsx';
 import RequireAuth from './components/RequireAuth.jsx';
+import UserTable from './components/UserTable';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
             </Route>
+            <Route path="admin/users" element={<UserTable />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>
